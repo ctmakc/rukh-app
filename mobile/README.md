@@ -16,10 +16,11 @@ Android
 - permissions: INTERNET, CAMERA (camera feature optional so camera-less tablets can be the TV)
 - WebView console: build `debug`, `adb forward tcp:9339 localabstract:webview_devtools_remote_<pid>`, then CDP
 
-iOS (GitHub Actions, repo ctmakc/rukh, workflow `.github/workflows/ios.yml`, manual)
-- `gh workflow run ios.yml -R ctmakc/rukh --ref <branch> -f upload=false` → signed IPA artifact
+iOS (GitHub Actions in the public build mirror ctmakc/rukh-app, workflow `.github/workflows/ios.yml`, manual)
+- macOS jobs do not start in the private repo ctmakc/rukh (Actions billing); the mirror holds only mobile/ (no store/), public/ and .github/
+- `bash scripts/push-ios-mirror.sh` → `gh workflow run ios.yml -R ctmakc/rukh-app --ref main -f upload=false` → signed IPA artifact
 - bundle id + profile "RUKH App Store": `store/tools/asc_profile.py` (team 6W4Q86TQ96, Finman's distribution cert)
-- secrets in the repo: IOS_P12_BASE64, IOS_P12_PASSWORD, IOS_PROFILE_BASE64, ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID
+- secrets in the mirror repo: IOS_P12_BASE64, IOS_P12_PASSWORD, IOS_PROFILE_BASE64, ASC_KEY_P8, ASC_KEY_ID, ASC_ISSUER_ID
 - store: `store/IOS-OWNER-STEP.md` (one browser step), then `bash store/tools/ios_publish.sh`
 
 Icons and store art
