@@ -16,7 +16,8 @@ cp www/app.html www/index.html
 # native glue (keep-awake, back button, clean-path links) goes into every bundled page, after <head>
 cp web/native.js www/js/native.js
 for f in www/*.html; do
-  grep -q '/js/native.js' "$f" || sed -i 's|<head>|<head>\n<script src="/js/native.js"></script>|' "$f"
+  # perl works the same with GNU and BSD (macOS runner) tools; BSD sed -i needs a suffix argument
+  grep -q '/js/native.js' "$f" || perl -pi -e 's|<head>|<head>\n<script src="/js/native.js"></script>|' "$f"
 done
 # wasm with SIMD only (all supported WebViews have it); drop the non-SIMD build if it ever gets vendored
 rm -f www/vendor/mediapipe/wasm/vision_wasm_nosimd_internal.* 2>/dev/null || true
