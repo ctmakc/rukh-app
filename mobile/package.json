@@ -1,0 +1,26 @@
+{
+  "name": "rukh-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RUKH Dance Battle native apps (Capacitor) — the web app from ../public bundled on the device",
+  "scripts": {
+    "web": "bash scripts/sync-web.sh",
+    "sync": "bash scripts/sync-web.sh && cap sync",
+    "assets": "capacitor-assets generate",
+    "android:bundle": "bash scripts/android-build.sh bundle",
+    "android:apk": "bash scripts/android-build.sh apk"
+  },
+  "dependencies": {
+    "@capacitor-community/keep-awake": "^8.0.1",
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/ios": "^8.6.2",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.2"
+  }
+}

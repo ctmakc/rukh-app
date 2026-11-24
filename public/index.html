@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141519">
+<title>RUKH · dance battle on any TV, scored by a phone</title>
+<meta name="description" content="RUKH turns a TV and a phone into a dance battle: the phone tracks up to 4 dancers, the TV plays the dance to follow, scores every move and the beat, and hands out a clip by QR.">
+<meta property="og:title" content="RUKH · dance battle on any TV">
+<meta property="og:description" content="A phone on the wall tracks up to 4 dancers. The TV plays the dance, scores moves and beat, and gives a clip by QR.">
+<meta property="og:image" content="https://rukh.mmix.biz/legal/tv-frame.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/demo/hero.webp" type="image/webp">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  :root { --pad: clamp(18px, 4vw, 56px); }
+  body { min-height: 100vh; }
+  .hd { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px var(--pad); border-bottom: 1px solid var(--line); }
+  .hd .wordmark { font-size: 30px; text-decoration: none; }
+  .hd nav { display: flex; gap: clamp(14px, 2.2vw, 30px); align-items: center; font-size: 15px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .hd nav a { text-decoration: none; color: var(--dim); padding: 6px 0; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; }
+  .hd nav a:hover { color: var(--chalk); border-color: var(--line); }
+  .hd nav a.short { display: none; }
+  .hd nav a.cta { color: var(--ink); background: var(--chalk); padding: 9px 18px 8px 12px; border: 0; clip-path: polygon(0 0, 100% 0, 95% 30%, 100% 62%, 96% 100%, 0 100%); }
+
+  /* hero: the TV picture takes 7 columns, the words overlap its left edge */
+  .hero { display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; padding: clamp(24px, 4vw, 56px) var(--pad) clamp(28px, 4vw, 56px); position: relative; }
+  .hero .words { grid-column: 1 / 7; grid-row: 1; position: relative; z-index: 2; padding-bottom: clamp(8px, 2vw, 32px); }
+  .hero figure { grid-column: 5 / 13; grid-row: 1; margin: 0; position: relative; }
+  .hero figure video, .hero figure img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 60% 40%; background: #0c0d10; }
+  .hero figure::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #141519 0, #141519cc 22%, #14151900 55%); pointer-events: none; }
+  .hero figcaption { margin-top: 10px; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--dim); } /* under the picture: the TV's own top bar stays clear */
+  h1 { font-family: var(--display); font-weight: 400; font-size: clamp(42px, 5.4vw, 92px); line-height: .98; }
+  h1 .ln { display: block; overflow: hidden; padding-bottom: .04em; }
+  h1 .ln > span { display: inline-block; animation: lineUp .8s var(--ease-out) both; }
+  h1 .ln:nth-child(3) > span { animation-delay: .08s; }
+  h1 .tape { font-family: var(--body); font-size: clamp(14px, 1.2vw, 18px); display: inline-block; margin-bottom: 20px; --tc: var(--t3); animation: tapeLay .42s var(--ease-tape) .25s both; }
+  @keyframes lineUp { from { transform: translateY(105%); } to { transform: none; } }
+  .lead { margin-top: 22px; font-size: clamp(17px, 1.45vw, 22px); line-height: 1.5; color: var(--dim); max-width: 31em; }
+  .lead b { color: var(--chalk); }
+  .roles { display: grid; gap: 12px; margin-top: 28px; max-width: 34rem; }
+  .role { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; padding: 18px 20px 18px 26px; background: var(--plate); text-decoration: none; position: relative;
+    transition: transform .2s var(--ease-out), background .2s; }
+  .role::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: var(--tc); transition: width .2s var(--ease-out); }
+  .role:hover { transform: translateX(6px); background: #262931; }
+  .role:hover::before { width: 14px; }
+  .role b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2vw, 30px); display: block; }
+  .role span { color: var(--dim); font-size: 16px; line-height: 1.4; display: block; margin-top: 4px; }
+  .role em { font-style: normal; font-family: var(--mono); font-size: 14px; color: var(--dim); }
+
+  /* sections */
+  section.s { padding: clamp(44px, 6vw, 96px) var(--pad) 0; }
+  .s > header { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(16px, 3vw, 48px); align-items: end; margin-bottom: clamp(22px, 3vw, 40px); }
+  .s h2 { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 4vw, 60px); line-height: 1; }
+  .s header p { color: var(--dim); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; max-width: 40em; }
+
+  /* THE EIGHT-COUNT RULER: how a round goes, counted in eights */
+  .ruler { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; list-style: none; }
+  .ruler li { display: grid; grid-template-rows: auto 1fr; gap: 14px; min-height: 172px; padding: 14px 14px 16px; background: var(--plate); border-top: 4px solid var(--line); transition: background .09s, border-color .09s; }
+  .ruler li b { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 3vw, 46px); line-height: 1; color: var(--dim); transition: color .09s; }
+  .ruler li span { font-size: 15px; font-weight: 700; line-height: 1.35; align-self: end; }
+  .ruler li span small { display: block; color: var(--dim); font-weight: 500; margin-top: 4px; font-size: 14px; }
+  .ruler li.wide { grid-column: span 4; background: #232530; }
+  .ruler li.wide b { letter-spacing: .04em; }
+  .ruler li.on { border-color: var(--chalk); background: #2c2f38; }
+  .ruler li.on b { color: var(--chalk); }
+  .ruler li.wide.on { border-color: var(--t1); }
+
+  /* modes: two ruled rows */
+  .modes { display: grid; border-top: 1px solid var(--line); }
+  .mode { display: grid; grid-template-columns: 4fr 8fr; gap: clamp(16px, 3vw, 48px); padding: clamp(22px, 3vw, 36px) 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .mode .tape { font-size: clamp(20px, 2vw, 30px); justify-self: start; }
+  .mode p { font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; max-width: 40em; }
+  .mode p + p { color: var(--dim); margin-top: 10px; font-size: 16px; }
+
+  /* dances: posters from /ref/index.json */
+  .dances { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .dance { background: var(--plate); position: relative; }
+  .dance img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; filter: saturate(.85); }
+  .dance div { padding: 14px 16px 16px; display: grid; gap: 6px; }
+  .dance b { font-family: var(--display); font-weight: 400; font-size: 24px; }
+  .dance span { font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); display: flex; gap: 8px; align-items: center; }
+  .dance .lv { display: inline-flex; gap: 3px; }
+  .dance .lv s { width: 6px; height: 13px; background: var(--line); transform: skewX(-12deg); }
+  .dance .lv[data-lv='1'] s:nth-child(-n+1), .dance .lv[data-lv='2'] s:nth-child(-n+2), .dance .lv[data-lv='3'] s { background: var(--chalk); }
+
+  /* events */
+  .events { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(20px, 4vw, 64px); align-items: center; padding-bottom: clamp(48px, 6vw, 96px); }
+  .events ul { list-style: none; display: grid; gap: 12px; margin-top: 22px; }
+  .events li { padding-left: 28px; position: relative; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.5; }
+  .events li::before { content: ''; position: absolute; left: 0; top: .62em; width: 16px; height: 6px; background: var(--t2); transform: rotate(-1.2deg); }
+  .book { display: inline-flex; align-items: baseline; gap: 12px; background: var(--chalk); color: var(--ink); text-decoration: none; padding: 16px 30px 15px 20px;
+    font-family: var(--display); font-size: clamp(22px, 2vw, 30px); clip-path: polygon(0 0, 100% 0, 97% 30%, 100% 62%, 98% 100%, 0 100%); transition: transform .18s var(--ease-out); }
+  .book:hover, .book:focus-visible { transform: translateY(-3px) rotate(-.6deg); }
+  .book small { font-family: var(--mono); font-size: 13px; opacity: .65; }
+  .events figure { margin: 0; }
+  .events figure img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; outline: 6px solid var(--chalk); }
+
+  footer { padding: 22px var(--pad) calc(22px + env(safe-area-inset-bottom)); color: var(--dim); font-size: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+
+  /* phones: sticky request tape once the hero has scrolled away */
+  .stick { position: fixed; left: 12px; right: 74px; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 110; display: none; transform: translateY(140%); transition: transform .35s var(--ease-out); }
+  .stick a { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: var(--chalk); color: var(--ink); text-decoration: none; padding: 15px 22px 14px 16px;
+    font-weight: 800; font-size: 16px; letter-spacing: .06em; text-transform: uppercase; clip-path: polygon(0 0, 100% 0, 97% 30%, 100% 62%, 98% 100%, 0 100%); box-shadow: 0 8px 24px #0008; }
+  .stick.on { transform: none; }
+
+  @media (max-width: 1100px) { .ruler { grid-template-columns: repeat(4, 1fr); } .ruler li.wide { grid-column: span 4; } .dances { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 820px) {
+    .hd nav a:not(.cta), .hd nav a.cta:not(.short) { display: none; }
+    .hd nav a.short { display: inline-block; }
+    .hero { grid-template-columns: 1fr; padding-top: 0; padding-inline: 0; }
+    .hero figure { grid-column: 1; grid-row: 1; }
+    .hero figure video, .hero figure img { aspect-ratio: 4 / 3; }
+    .hero figure::after { background: linear-gradient(0deg, #141519 0, #14151900 45%); }
+    .hero figcaption { display: none; } /* the TV's own top bar sits there on phones; the video label says the same */
+    .role { padding-right: 64px; } /* the path stays clear of the bug-report button column */
+    .hero .words { grid-column: 1; grid-row: 2; padding: 0 var(--pad); margin-top: -64px; }
+    .s > header, .mode, .events { grid-template-columns: 1fr; }
+    .ruler { grid-template-columns: repeat(2, 1fr); }
+    .ruler li { min-height: 128px; }
+    .ruler li.wide { grid-column: span 2; }
+    .dances { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .dance b { font-size: 19px; }
+    .dance span { font-size: 11px; }
+    .stick { display: block; }
+    footer { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ruler li { transition: none; } }
+</style>
+</head>
+<body>
+<header class="hd">
+  <a class="wordmark" href="/">RUKH<i>.</i></a>
+  <nav aria-label="Sections">
+    <a href="#round">How a round goes</a>
+    <a href="#modes">Modes</a>
+    <a href="#dances">Dances</a>
+    <a href="#events">For events</a>
+    <a class="cta" href="/screen">Open the TV screen</a><a class="cta short" href="/screen">TV screen</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <figure>
+      <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="/demo/hero.webp" aria-label="A test round on the RUKH TV screen: two dancers with their skeletons, the dance to follow and the 8-count ruler">
+        <source src="/demo/hero.mp4" type="video/mp4">
+      </video>
+      <figcaption>test round · TV screen</figcaption>
+    </figure>
+    <div class="words">
+      <h1><span class="tape">Dance battle · 1–4 dancers</span><span class="ln"><span>A phone on the wall.</span></span><span class="ln"><span>A TV that keeps the beat.</span></span></h1>
+      <p class="lead">The phone tracks every dancer right on the device. The TV plays the dance to follow, scores each move and <b>who hits the beat</b>, and hands every crew a clip by QR.</p>
+      <div class="roles">
+        <a class="role" href="/screen" style="--tc:var(--t2)"><div><b>This is the TV</b><span>Open on the TV browser or a laptop on HDMI. It shows the room code.</span></div><em>/screen</em></a>
+        <a class="role" href="/cam" style="--tc:var(--t1)"><div><b>This is the camera</b><span>Open on the phone against the wall, then scan the QR on the TV.</span></div><em>/cam</em></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="round">
+    <header><h2>Counted in eights</h2><p>Dance teachers count in eights, and so does RUKH. One round from switch-on to the clip:</p></header>
+    <ol class="ruler" id="ruler">
+      <li><b>1</b><span>Open /screen on the TV<small>a room code and a QR appear</small></span></li>
+      <li><b>2</b><span>Scan the QR with the phone<small>or type the 4-letter code</small></span></li>
+      <li><b>3</b><span>Lean the phone on the wall<small>2–4 m away, sideways</small></span></li>
+      <li><b>4</b><span>Pick a dance<small>easy, medium or hard</small></span></li>
+      <li class="wide"><b>5 · 6 · 7 · 8</b><span>Count-in, then 30 seconds of dancing<small>moves and beat are scored live for every dancer; the TV hands out a clip by QR</small></span></li>
+    </ol>
+  </section>
+
+  <section class="s" id="modes">
+    <header><h2>Two ways to play</h2><p>Both use the same phone and the same TV. Switch between them on the TV screen.</p></header>
+    <div class="modes">
+      <div class="mode"><span class="tape" style="--tc:var(--t1)">Battle</span><div><p>Up to four dancers side by side, each on their own colour of tape. Points for every move that matches the reference and every accent on the beat; a podium, tonight’s top list and a clip for the crew.</p><p>Ties share the place. A dancer who leaves the frame keeps their points.</p></div></div>
+      <div class="mode"><span class="tape" style="--tc:var(--t2)">Lesson</span><div><p>The same dance cut into 4–6 moves of 8 counts. Learn one move at a time, then put the routine together.</p><p>Open it from the TV screen: the phone stays in the same room.</p></div></div>
+    </div>
+  </section>
+
+  <section class="s" id="dances">
+    <header><h2>Dances</h2><p>Each dance is a real dancer on video with our own music, made on the beat grid of the moves.</p></header>
+    <div class="dances" id="danceList"></div>
+  </section>
+
+  <section class="s events" id="events">
+    <div>
+      <h2>For your event</h2>
+      <ul>
+        <li>Any TV, projector or laptop on HDMI, plus one phone — no sensors, no install.</li>
+        <li>Rounds of 30 seconds keep a queue moving; tonight’s top list keeps people coming back.</li>
+        <li>Every crew leaves with a clip of their round on their own phone.</li>
+      </ul>
+      <p style="margin-top:28px"><a class="book" href="mailto:info@mmix.biz?subject=RUKH%20for%20our%20event">Book RUKH <small>info@mmix.biz</small></a></p>
+    </div>
+    <figure><img src="/legal/clip-frame.webp" alt="A finished round clip: dancers with skeletons and their scores along the bottom" loading="lazy" width="1280" height="720"></figure>
+  </section>
+</main>
+
+<footer>
+  <span>RUKH by MMIX · pose tracking runs on the phone · no accounts</span>
+  <nav><a href="/privacy.html">Privacy</a><a href="/support.html">Support</a><a href="/demo/round-clip.mp4">Watch a round clip</a></nav>
+</footer>
+
+<div class="stick" id="stick"><a href="mailto:info@mmix.biz?subject=RUKH%20for%20our%20event"><span>Book for your event</span><span aria-hidden="true">→</span></a></div>
+
+<script type="module">
+  // dances from the live list
+  const list = document.getElementById('danceList');
+  try {
+    const ds = await (await fetch('/ref/index.json')).json();
+    for (const d of ds) {
+      const lv = { easy: 1, medium: 2, hard: 3 }[d.level] || 0;
+      const el = document.createElement('article'); el.className = 'dance';
+      el.innerHTML = `<img alt="" loading="lazy" width="640" height="360"><div><b></b><span><i class="lv" data-lv="${lv}"><s></s><s></s><s></s></i><em></em></span></div>`;
+      el.querySelector('img').src = d.poster; el.querySelector('img').alt = `${d.title}: reference dancer`;
+      el.querySelector('b').textContent = d.title;
+      el.querySelector('em').textContent = [d.level, d.style, `${Math.round(d.bpm)} BPM`].filter(Boolean).join(' · ');
+      el.querySelector('em').style.fontStyle = 'normal';
+      list.appendChild(el);
+    }
+  } catch { list.closest('section').hidden = true; }
+  // the ruler counts at 100 BPM while it is on screen
+  const cells = [...document.querySelectorAll('#ruler li')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let k = 0, timer = null;
+  const step = () => { cells.forEach((c, i) => c.classList.toggle('on', i === Math.min(k, 4))); k = (k + 1) % 8; };
+  if (!reduce) new IntersectionObserver(([e]) => { clearInterval(timer); if (e.isIntersecting) timer = setInterval(step, 600); }).observe(document.getElementById('ruler'));
+  // sticky request tape on phones once the hero is gone
+  const stick = document.getElementById('stick');
+  new IntersectionObserver(([e]) => stick.classList.toggle('on', !e.isIntersecting), { threshold: 0 }).observe(document.querySelector('.hero'));
+  // save data: keep the poster only
+  if (navigator.connection?.saveData) { const v = document.getElementById('heroVid'); v.removeAttribute('autoplay'); v.preload = 'none'; }
+</script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

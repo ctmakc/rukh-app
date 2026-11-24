@@ -1,0 +1,272 @@
+[
+ {
+  "id": "ref-a",
+  "title": "Sunset Bounce",
+  "bpm": 74.8,
+  "duration": 21.521,
+  "video": "/ref/ref-a.mp4",
+  "poster": "/ref/ref-a.jpg",
+  "json": "/ref/ref-a.json",
+  "level": "easy",
+  "style": "house",
+  "moves": [
+   {
+    "t": 2.81,
+    "end": 6.014,
+    "label": "Arms up hit",
+    "counts": 4
+   },
+   {
+    "t": 6.014,
+    "end": 9.218,
+    "label": "Arm wave",
+    "counts": 4
+   },
+   {
+    "t": 9.218,
+    "end": 12.434,
+    "label": "Knee lift",
+    "counts": 4
+   },
+   {
+    "t": 12.434,
+    "end": 15.639,
+    "label": "Turn around",
+    "counts": 4
+   },
+   {
+    "t": 15.639,
+    "end": 18.843,
+    "label": "Side step travel",
+    "counts": 4
+   },
+   {
+    "t": 18.843,
+    "end": 21.521,
+    "label": "Footwork shuffle",
+    "counts": 4
+   }
+  ]
+ },
+ {
+  "id": "ref-b",
+  "title": "Neon Court",
+  "bpm": 78.15,
+  "duration": 21.939,
+  "video": "/ref/ref-b.mp4",
+  "poster": "/ref/ref-b.jpg",
+  "json": "/ref/ref-b.json",
+  "level": "medium",
+  "style": "house",
+  "moves": [
+   {
+    "t": 2.577,
+    "end": 5.654,
+    "label": "Wide step",
+    "counts": 4
+   },
+   {
+    "t": 5.654,
+    "end": 8.719,
+    "label": "Side step travel",
+    "counts": 4
+   },
+   {
+    "t": 8.719,
+    "end": 11.796,
+    "label": "Arm wave",
+    "counts": 4
+   },
+   {
+    "t": 11.796,
+    "end": 14.861,
+    "label": "Reach up",
+    "counts": 4
+   },
+   {
+    "t": 14.861,
+    "end": 17.937,
+    "label": "Turn around",
+    "counts": 4
+   },
+   {
+    "t": 17.937,
+    "end": 21.014,
+    "label": "Arms out bounce",
+    "counts": 4
+   }
+  ]
+ },
+ {
+  "id": "ref-c",
+  "title": "Court Cypher",
+  "bpm": 106.85,
+  "duration": 22.94,
+  "video": "/ref/ref-c.mp4",
+  "poster": "/ref/ref-c.jpg",
+  "json": "/ref/ref-c.json",
+  "level": "hard",
+  "style": "hip-hop",
+  "moves": [
+   {
+    "t": 1.01,
+    "end": 5.503,
+    "label": "Footwork shuffle",
+    "counts": 8
+   },
+   {
+    "t": 5.503,
+    "end": 9.996,
+    "label": "Arm wave",
+    "counts": 8
+   },
+   {
+    "t": 9.996,
+    "end": 14.486,
+    "label": "Arms up reach",
+    "counts": 8
+   },
+   {
+    "t": 14.486,
+    "end": 18.983,
+    "label": "Side step travel",
+    "counts": 8
+   }
+  ]
+ },
+ {
+  "id": "ref-e",
+  "title": "Night Shift",
+  "bpm": 103.77,
+  "duration": 20.02,
+  "video": "/ref/ref-e.mp4",
+  "poster": "/ref/ref-e.jpg",
+  "json": "/ref/ref-e.json",
+  "level": "medium",
+  "style": "trap",
+  "moves": [
+   {
+    "t": 1.509,
+    "end": 6.13,
+    "label": "Chest bounce",
+    "counts": 8
+   },
+   {
+    "t": 6.13,
+    "end": 10.762,
+    "label": "Side step travel",
+    "counts": 8
+   },
+   {
+    "t": 10.762,
+    "end": 15.383,
+    "label": "Knee lift point",
+    "counts": 8
+   },
+   {
+    "t": 15.383,
+    "end": 20.015,
+    "label": "Hands to head",
+    "counts": 8
+   }
+  ]
+ },
+ {
+  "id": "ref-f",
+  "title": "Loft Groove",
+  "bpm": 116.95,
+  "duration": 26.0,
+  "video": "/ref/ref-f.mp4",
+  "poster": "/ref/ref-f.jpg",
+  "json": "/ref/ref-f.json",
+  "level": "easy",
+  "style": "pop",
+  "moves": [
+   {
+    "t": 0.174,
+    "end": 4.272,
+    "label": "Bounce groove",
+    "counts": 8
+   },
+   {
+    "t": 4.272,
+    "end": 8.382,
+    "label": "Clap groove",
+    "counts": 8
+   },
+   {
+    "t": 8.382,
+    "end": 12.481,
+    "label": "Side walk",
+    "counts": 8
+   },
+   {
+    "t": 12.481,
+    "end": 16.591,
+    "label": "Reach forward",
+    "counts": 8
+   },
+   {
+    "t": 16.591,
+    "end": 20.689,
+    "label": "Arm wave",
+    "counts": 8
+   },
+   {
+    "t": 20.689,
+    "end": 24.799,
+    "label": "Turn around",
+    "counts": 8
+   }
+  ]
+ },
+ {
+  "id": "ref-g",
+  "title": "Neon Flow",
+  "bpm": 91.9,
+  "duration": 21.0,
+  "video": "/ref/ref-g.mp4",
+  "poster": "/ref/ref-g.jpg",
+  "json": "/ref/ref-g.json",
+  "level": "hard",
+  "style": "contemporary",
+  "moves": [
+   {
+    "t": 0.778,
+    "end": 3.39,
+    "label": "Reach up",
+    "counts": 4
+   },
+   {
+    "t": 3.39,
+    "end": 5.991,
+    "label": "Knee lift jump",
+    "counts": 4
+   },
+   {
+    "t": 5.991,
+    "end": 8.603,
+    "label": "Leg kick",
+    "counts": 4
+   },
+   {
+    "t": 8.603,
+    "end": 11.215,
+    "label": "Fold down",
+    "counts": 4
+   },
+   {
+    "t": 11.215,
+    "end": 13.827,
+    "label": "Open arms",
+    "counts": 4
+   },
+   {
+    "t": 13.827,
+    "end": 16.44,
+    "label": "Turn around",
+    "counts": 4
+   }
+  ]
+ }
+]

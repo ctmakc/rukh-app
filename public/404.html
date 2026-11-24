@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141519">
+<meta name="robots" content="noindex">
+<title>Off the floor · RUKH dance battle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/legal/legal.css">
+<style>
+  .nf-n { font-family: var(--mono); font-weight: 700; font-size: clamp(15px, 1.2vw, 18px); color: var(--dim); letter-spacing: .08em; margin-top: 18px; }
+  .nf-n b { color: var(--chalk); }
+</style>
+</head>
+<body>
+<header class="lg-head">
+  <a class="wordmark" href="/">RUKH<i>.</i></a>
+  <nav aria-label="Pages"><a href="/">Play</a><a href="/support.html" style="--tc:var(--t2)">Support</a><a href="/privacy.html" style="--tc:var(--t1)">Privacy</a></nav>
+</header>
+
+<main>
+<section class="lg-hero">
+  <div class="copy">
+    <h1><span class="tape" style="--tc:var(--t4)">404 · page not found</span><br><span class="ln">You stepped</span><span class="ln">off the floor</span></h1>
+    <p class="lead">This address has no page. A clip link may have expired: clips stay for 7 days. <b>Pick where to go next.</b></p>
+    <div class="btn-row">
+      <a class="btn-tape" href="/" style="--tc:var(--t1)">Back to RUKH</a>
+      <a class="btn-ghost" href="/screen">Open the TV screen</a>
+      <a class="btn-ghost" href="/cam">Be the camera</a>
+    </div>
+    <p class="nf-n" id="nfPath" aria-live="polite"></p>
+  </div>
+  <figure class="lg-fig">
+    <picture><source srcset="/legal/tv-frame.webp" type="image/webp"><img src="/legal/tv-frame.jpg" width="1280" height="720" alt="The RUKH TV screen during a round: dancers with their skeletons, the reference dance and the 8-count ruler" fetchpriority="high"></picture>
+    <figcaption><span class="tape" style="--tc:var(--chalk)">The floor is here: rukh.mmix.biz</span></figcaption>
+  </figure>
+</section>
+</main>
+
+<div class="lg-stick" id="stick"><a class="btn-tape" href="/" style="--tc:var(--t1)">Back to RUKH</a></div>
+<script>
+  document.getElementById('nfPath').innerHTML = 'Asked for: <b></b>';
+  document.querySelector('#nfPath b').textContent = location.pathname;
+</script>
+<script src="/legal/legal.js" defer></script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

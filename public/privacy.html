@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141519">
+<title>Privacy policy · RUKH dance battle</title>
+<meta name="description" content="What the RUKH dance battle app sees, sends and keeps: camera frames stay on the phone, live video goes to your TV, clips are deleted after 7 days. No accounts, no ads, no tracking.">
+<link rel="canonical" href="https://rukh.mmix.biz/privacy">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/legal/legal.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"RUKH privacy policy","url":"https://rukh.mmix.biz/privacy","dateModified":"2026-11-24","inLanguage":"en",
+ "publisher":{"@type":"Organization","name":"Marketing MIX","legalName":"Innova Consult Ltd.","url":"https://mmix.biz/","email":"info@mmix.biz",
+  "address":{"@type":"PostalAddress","streetAddress":"208 Booth Street","addressLocality":"Ottawa","addressRegion":"ON","postalCode":"K1R 7J4","addressCountry":"CA"}}}
+</script>
+</head>
+<body>
+<header class="lg-head">
+  <a class="wordmark" href="/">RUKH<i>.</i></a>
+  <nav aria-label="Pages"><a href="/">Play</a><a href="/support.html" style="--tc:var(--t2)">Support</a><a href="/privacy.html" aria-current="page" style="--tc:var(--t1)">Privacy</a></nav>
+</header>
+
+<main>
+<section class="lg-hero">
+  <div class="copy">
+    <h1><span class="tape" style="--tc:var(--t1)">Privacy policy</span><br><span class="ln">What RUKH sees,</span><span class="ln">sends and keeps</span></h1>
+    <p class="lead">RUKH turns a phone into a dance judge and a TV into the stage. This page lists every piece of data the game touches, where it goes and how long it stays. <b>Camera frames are read on the phone. The only thing we store is the round clip, for 7 days.</b></p>
+    <p class="stamp">Updated 24 Nov 2026 · applies to rukh.mmix.biz and the RUKH apps for Android and iOS</p>
+  </div>
+  <figure class="lg-fig">
+    <picture><source srcset="/legal/clip-frame.webp" type="image/webp"><img src="/legal/clip-frame.jpg" width="1280" height="720" alt="A frame from a RUKH round clip: two dancers with pink and cyan skeletons, their scores and the reference dance in the corner" fetchpriority="high"></picture>
+    <figcaption><span class="tape" style="--tc:var(--chalk)">A round clip. This is the one thing we keep, and only for 7 days.</span></figcaption>
+  </figure>
+</section>
+
+<ul class="lg-facts" aria-label="In short">
+  <li><span class="tape" style="--tc:var(--t3)">No accounts</span></li>
+  <li><span class="tape" style="--tc:var(--t2)">No ads</span></li>
+  <li><span class="tape" style="--tc:var(--t4)">No tracking or analytics</span></li>
+  <li><span class="tape" style="--tc:var(--t1)">Clips gone after 7 days</span></li>
+</ul>
+
+<ol class="lg-ruler" aria-label="Sections">
+  <li><a href="#camera" style="--tc:var(--t1)"><b>1</b><span>Camera</span></a></li>
+  <li><a href="#link" style="--tc:var(--t2)"><b>2</b><span>Phone to TV</span></a></li>
+  <li><a href="#clips" style="--tc:var(--t3)"><b>3</b><span>Clips</span></a></li>
+  <li><a href="#device" style="--tc:var(--t4)"><b>4</b><span>On your device</span></a></li>
+  <li><a href="#reports" style="--tc:var(--t1)"><b>5</b><span>Bug reports</span></a></li>
+  <li><a href="#services" style="--tc:var(--t2)"><b>6</b><span>Who helps us</span></a></li>
+  <li><a href="#delete" style="--tc:var(--t3)"><b>7</b><span>Delete data</span></a></li>
+  <li><a href="#contact" style="--tc:var(--t4)"><b>8</b><span>Contact</span></a></li>
+</ol>
+
+<div class="lg-main">
+  <section class="count" id="camera" style="--tc:var(--t1)">
+    <div class="n" aria-hidden="true">1</div>
+    <div>
+      <h2>The camera</h2>
+      <div class="body">
+        <p class="lead-in">The phone that films the dancers asks for camera access. It needs the camera for one job: finding the dancers' bodies.</p>
+        <p>Each camera frame is analysed on the phone itself by a body-tracking model that ships inside RUKH (MediaPipe Pose Landmarker). The model finds up to five people (four of them play; a fifth only makes the TV ask them to step out of the picture) and turns each of them into 33 body points: shoulders, elbows, wrists, hips, knees, ankles and so on. We switched off the usage statistics that this model would otherwise send to Google, so the tracking makes no network requests of its own.</p>
+        <p>The game never turns on the microphone. The start screen of the app can also use the camera to read the QR code shown on the TV; that image is decoded on the phone and goes nowhere.</p>
+        <p>You can take camera access back at any time in your phone's settings. Without it the phone can still be used as the TV screen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="link" style="--tc:var(--t2)">
+    <div class="n" aria-hidden="true">2</div>
+    <div>
+      <h2>From the phone to the TV</h2>
+      <div class="body">
+        <p class="lead-in">To show the dancers live, the phone sends its camera video and the body points to the TV you paired it with by the room code.</p>
+        <ul>
+          <li><strong>Direct link.</strong> When the network allows it, the phone and the TV connect to each other with WebRTC. The video and the body points are encrypted on the phone and decrypted on the TV.</li>
+          <li><strong>Relay.</strong> When a direct link is blocked (different networks, strict Wi-Fi), the phone sends small still frames and the body points through our room server instead, over an encrypted connection (TLS). The server passes each message to the TV as it arrives and keeps none of it.</li>
+          <li><strong>Pairing.</strong> To connect, our room server passes the room code and connection details between the two devices, including their network addresses. Public STUN servers run by Cloudflare and Google tell each device its own public address. None of this is saved.</li>
+        </ul>
+        <p>The room code is a random 4-character code. It is tied to no name or account, and a room stops existing when both devices leave.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="clips" style="--tc:var(--t3)">
+    <div class="n" aria-hidden="true">3</div>
+    <div>
+      <h2>Round clips</h2>
+      <div class="body">
+        <p class="lead-in">The screen that runs a round records it as a short video: the dancers as the camera saw them, their skeletons and scores, the reference dance in a corner and the music. The microphone plays no part in it.</p>
+        <p>When the round ends, that screen uploads the clip to our storage together with the dance title and the winner's dancer name and points, then shows a QR code. Anyone who has the link or scans the QR can watch and download the clip. The link carries a random 10-character code; it is listed nowhere and search engines are asked to skip it.</p>
+        <p><strong>Every clip is deleted automatically 7 days after the round.</strong> We do not copy clips elsewhere, do not use them to train models and do not publish them. Want a clip gone sooner? See <a href="#delete">Delete data</a>.</p>
+        <p>To stop abuse of the upload, our server counts uploads per network (IP) address for the current day. Those counters hold a number and a time, nothing else, and are deleted automatically just after the day ends (midnight UTC). When the phone checks a typed room code, the server also counts those checks per IP address for 10 minutes, in memory only, to stop anyone from listing open rooms.</p>
+        <p class="dim">Dance in a public place only with people who are happy to be filmed, and ask a parent before filming children.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="device" style="--tc:var(--t4)">
+    <div class="n" aria-hidden="true">4</div>
+    <div>
+      <h2>Kept on your device</h2>
+      <div class="body">
+        <p>A few things are saved in the browser's local storage, or in the app's own storage, on the device where they were made. They never leave it:</p>
+        <ul>
+          <li>the "tonight's top" scoreboard on the TV: dancer names you typed, points, the dance and the time, up to 50 rows;</li>
+          <li>the last room code, so the phone and the TV find each other again after a reload.</li>
+        </ul>
+        <p>RUKH sets no cookies of its own. The comment tool described in section 5 sets one session cookie, and only after you open it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="reports" style="--tc:var(--t1)">
+    <div class="n" aria-hidden="true">5</div>
+    <div>
+      <h2>Bug reports and comments</h2>
+      <div class="body">
+        <p class="lead-in">Every screen has a small "Report a problem" button. Nothing is sent until you fill it in and press Send.</p>
+        <dl>
+          <dt>Report form</dt><dd>What you type, your email if you choose to add it, the page address, screen size, language and browser version. Our server adds the country it sees from the connection. We get a notification in our team chat and keep the report for up to 180 days.</dd>
+          <dt>Comment mode</dt><dd>Notes you pin to parts of the page, an optional name, and any screenshot, file or voice note you choose to attach. While comment mode is open, unsent notes are saved as a draft on our review server so a reload does not lose them; drafts are deleted after 60 days, sent comments after a year. The microphone is used only while you record a voice note, and voice notes are transcribed on our own server.</dd>
+        </dl>
+        <p>We use reports only to fix RUKH and, when you leave an email, to answer you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="services" style="--tc:var(--t2)">
+    <div class="n" aria-hidden="true">6</div>
+    <div>
+      <h2>Who helps us run it</h2>
+      <div class="body">
+        <ul>
+          <li><strong>Cloudflare</strong> hosts the site, the room server, the relay and the clip storage. It processes connections, including IP addresses, to deliver them. We have not switched on request logging for RUKH.</li>
+          <li><strong>Google Fonts</strong> serves the typefaces of the pages, so your device connects to Google's servers, which see its IP address. <strong>Cloudflare and Google</strong> also run the public STUN servers named in section 2.</li>
+          <li><strong>Telegram</strong> carries the notification about a new bug report to our team chat.</li>
+        </ul>
+        <p>We do not sell or rent data, show ads, run analytics, use advertising IDs or link anything you do in RUKH with data from other companies. RUKH has no sign-in and asks nobody for a name, email, age or location.</p>
+        <p>Where privacy laws such as the GDPR apply, we process the live link and clips to provide the game you start (contract), and bug reports in our legitimate interest in fixing it. You can ask for a copy of your data, its correction or deletion, and you may complain to your data protection authority. Canadian users are covered by PIPEDA.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="delete" style="--tc:var(--t3)">
+    <div class="n" aria-hidden="true">7</div>
+    <div>
+      <h2>Delete your data</h2>
+      <div class="body">
+        <ol>
+          <li><strong>A clip.</strong> It disappears by itself 7 days after the round. To remove it sooner, email <a href="mailto:info@mmix.biz?subject=RUKH%3A%20delete%20a%20clip">info@mmix.biz</a> with the clip link (it looks like <code>rukh.mmix.biz/c/Ab3dEf7hJk</code>). We delete it within 3 working days and write back.</li>
+          <li><strong>Scoreboard and room code.</strong> In a browser, clear the site data for rukh.mmix.biz. On Android: Settings → Apps → RUKH → Storage → Clear storage, or uninstall the app. On iPhone or iPad: delete the app.</li>
+          <li><strong>A bug report or comment.</strong> Email us roughly when you sent it and the email you used, if any. We delete it within 30 days, usually much sooner.</li>
+        </ol>
+        <p>Nothing else about you is stored, so there is no account to close.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="count" id="contact" style="--tc:var(--t4)">
+    <div class="n" aria-hidden="true">8</div>
+    <div>
+      <h2>Who we are</h2>
+      <div class="body">
+        <p>RUKH is made by Marketing MIX (MMIX), a trade name of Innova Consult Ltd., 208 Booth Street, Ottawa, ON K1R 7J4, Canada. Questions about privacy or a deletion request: <a href="mailto:info@mmix.biz?subject=RUKH%20privacy">info@mmix.biz</a>.</p>
+        <p>RUKH is a party game for teens and adults. It asks nobody's age and is not directed at children under 13; if you believe a clip of a child was saved without a parent's consent, write to us and we delete it. When this policy changes, we update the date at the top of the page; a change in what we collect will also be noted in the app's release notes.</p>
+        <div class="btn-row"><a class="btn-tape" href="mailto:info@mmix.biz?subject=RUKH%20privacy" style="--tc:var(--t4)">Contact us about your data</a><a class="btn-ghost" href="/support.html">Support page</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+
+<div class="lg-stick" id="stick"><a class="btn-tape" href="mailto:info@mmix.biz?subject=RUKH%20privacy" style="--tc:var(--t4)" aria-label="Contact us about your data">Contact us · privacy</a></div>
+
+<footer class="lg-foot"><span>RUKH by MMIX · a trade name of Innova Consult Ltd., Ottawa, Canada</span><span><a href="/support.html">Support</a> · <a href="mailto:info@mmix.biz">info@mmix.biz</a></span></footer>
+
+<script src="/legal/legal.js" defer></script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141519">
+<title>Your RUKH dance clip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<style>
+  body { min-height: 100vh; padding: calc(env(safe-area-inset-top) + 18px) 18px calc(env(safe-area-inset-bottom) + 32px); display: grid; gap: 16px; align-content: start; max-width: 760px; margin: 0 auto; }
+  .top { display: flex; justify-content: space-between; align-items: center; }
+  .wordmark { font-size: 28px; text-decoration: none; }
+  .top .mono { font-size: 12px; color: var(--dim); }
+  h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 7vw, 44px); line-height: 1.04; }
+  .tape { font-size: 15px; --tc: var(--t3); justify-self: start; }
+  .frame { position: relative; background: #0c0d10; outline: 5px solid var(--chalk); margin: 6px 0; }
+  .frame video { width: 100%; display: block; aspect-ratio: 16/9; background: #0c0d10; }
+  .frame .wait { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--dim); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; }
+  .frame .wait b { display: block; width: 46px; height: 10px; margin: 0 auto 12px; background: var(--chalk); transform: skewX(-12deg); animation: tick .6s steps(2) infinite alternate; }
+  @keyframes tick { to { opacity: .25; } }
+  .frame.ready .wait { display: none; }
+  .frame.gone video { opacity: .15; }
+  .frame.gone .wait b { animation: none; background: var(--t4); }
+  .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn { display: flex; justify-content: center; align-items: center; text-align: center; min-height: 56px; font-weight: 800; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: 12px; background: var(--plate); border: 1px solid var(--line); color: var(--chalk); cursor: pointer; font-family: inherit; }
+  .btn.primary { background: var(--chalk); color: var(--ink); border-color: var(--chalk); grid-column: 1 / -1; min-height: 62px; font-size: 18px; clip-path: polygon(0 0, 100% 0, 98.5% 30%, 100% 62%, 99% 100%, 0 100%); }
+  .btn[hidden] { display: none; }
+  p { color: var(--dim); font-size: 16px; line-height: 1.5; }
+  p a { color: var(--chalk); }
+</style>
+</head>
+<body>
+<div class="top"><a class="wordmark" href="/">RUKH<i>.</i></a><span class="mono" id="exp"></span></div>
+<span class="tape" id="score">Your round</span>
+<h1 id="title">Dance clip</h1>
+<div class="frame" id="frame">
+  <video id="v" playsinline preload="metadata"></video>
+  <div class="wait" id="wait"><div><b></b><span id="waitTxt">Loading your clip…</span></div></div>
+</div>
+<div class="acts" id="acts">
+  <a class="btn primary" id="dl" href="#" download hidden>Download clip</a>
+  <button class="btn" id="share" type="button" hidden>Share</button>
+  <a class="btn" id="again" href="/" style="grid-column:1/-1">Dance again</a>
+</div>
+<p id="note">The clip is kept for 7 days and anyone with this link can watch it. Save it to your phone to keep it. <a href="/privacy.html#delete">Delete it sooner</a>.</p>
+<script type="module">
+  import { api } from '/js/env.js';
+  const $ = (id) => document.getElementById(id);
+  const id = location.pathname.split('/').pop().replace(/[^A-Za-z0-9_-]/g, '');
+  const v = $('v'), frame = $('frame');
+  const sim = new URLSearchParams(location.search).get('simulate'); // expired | slow (screenshots)
+  $('dl').href = api(`/api/clip/${id}?dl=1`);
+  v.addEventListener('loadeddata', () => { frame.classList.add('ready'); v.controls = true; });
+  v.addEventListener('error', () => { if (!frame.classList.contains('gone')) $('waitTxt').textContent = 'This browser cannot play the clip here — download it instead.'; });
+  function gone() {
+    frame.classList.add('gone');
+    $('title').textContent = 'This clip has expired';
+    $('score').textContent = 'Clips last 7 days'; $('score').style.setProperty('--tc', 'var(--t4)');
+    $('waitTxt').textContent = 'Dance another round to get a new one.';
+    $('dl').hidden = true; $('share').hidden = true;
+    $('again').classList.add('primary'); $('note').hidden = true;
+  }
+  // the TV may still be uploading when the QR is scanned: retry for a few seconds
+  async function info(tries) {
+    let m = null;
+    if (sim === 'slow') { $('waitTxt').textContent = 'The TV is still saving the clip…'; return; }
+    if (sim === 'expired') return gone();
+    try { const r = await fetch(api(`/api/clipinfo/${id}`)); m = r.ok ? await r.json() : null; } catch {}
+    if (!m) {
+      if (tries > 0) { $('waitTxt').textContent = 'The TV is still saving the clip…'; return setTimeout(() => info(tries - 1), 1500); }
+      return gone();
+    }
+    v.src = api(`/api/clip/${id}`);
+    $('dl').hidden = false; $('waitTxt').textContent = 'Loading your clip…';
+    if (m.title) { $('title').textContent = m.title; document.title = `${m.title} · RUKH clip`; }
+    if (m.score) $('score').textContent = 'Top score · ' + m.score;
+    if (m.at) $('exp').textContent = 'kept until ' + new Date(m.at + 7 * 864e5).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    if (navigator.share) { $('share').hidden = false; $('again').style.gridColumn = ''; }
+  }
+  $('share').onclick = () => navigator.share({ title: $('title').textContent + ' · RUKH', url: location.href }).catch(() => {});
+  info(6);
+</script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

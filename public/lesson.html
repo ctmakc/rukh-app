@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#141519">
+<meta name="robots" content="noindex">
+<title>RUKH · lesson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/lesson.css">
+</head>
+<body class="lesson ph-pick">
+<header class="bar">
+  <a class="wordmark home" id="homeLink" href="/app" aria-label="RUKH start screen">RUKH<i>.</i></a>
+  <span class="tape modetag">Lesson</span>
+  <div class="now"><b id="danceTitle">Pick a dance</b><span class="mono" id="danceMeta"></span></div>
+  <div class="src" id="srcChip" role="status"><i></i><span id="srcTxt">Camera…</span></div>
+</header>
+
+<!-- 1 · PICK A DANCE -->
+<section class="pick" id="pick" aria-labelledby="pickH">
+  <div class="pick-lead">
+    <div class="preview" id="preview">
+      <canvas id="previewCanvas" aria-label="Your camera with the tracked body"></canvas>
+      <p class="preview-msg" id="previewMsg">Starting the camera…</p>
+    </div>
+    <span class="tape lay" style="--tc:var(--t3)">Learn it in eights</span>
+    <h1 id="pickH">One move<br>at a time.<br>Then the<br>whole dance.</h1>
+    <p class="lede">Each move loops at half, three-quarter or full speed until you hit it. Then you dance it start to finish for a score.</p>
+  </div>
+  <ol class="dances" id="dances" aria-label="Dances"></ol>
+  <div class="pick-err" id="pickErr" hidden>
+    <p>The dance list did not load. Check the connection.</p>
+    <button class="btn" id="pickRetry" type="button">Try again</button>
+  </div>
+</section>
+
+<!-- 2 · STUDIO: reference + you + the eight-count ruler -->
+<main class="studio" id="studio" aria-label="Lesson">
+  <section class="refpane" id="refPane">
+    <video id="ref" playsinline preload="auto"></video>
+    <span class="tape movetag" id="moveTag" style="--tc:var(--chalk)">Move 1</span>
+    <div class="go" id="goBox">
+      <button class="start" id="startBtn" type="button"><span id="startTxt">Start move 1</span><small>Space</small></button>
+      <p class="go-hint" id="goHint">Stand back so your whole body is in frame.</p>
+    </div>
+    <div class="flash" id="flash" aria-live="polite"></div>
+    <span class="tape buffer" style="--tc:var(--t4)">Loading the video…</span>
+    <div class="loadmsg" id="loadMsg" hidden></div>
+  </section>
+
+  <section class="campane" id="camPane">
+    <canvas id="camCanvas" aria-label="You, with the tracked skeleton"></canvas>
+    <span class="tape youtag" style="--tc:var(--t1)">You</span>
+    <span class="rate mono" id="rateChip" hidden></span>
+    <div class="camstate" id="camState" hidden></div>
+  </section>
+
+  <div class="count" id="count" aria-live="assertive"></div>
+
+  <aside class="rail" aria-label="Moves">
+    <p class="k">Moves</p>
+    <ol class="moves" id="moves"></ol>
+    <button class="btn fullbtn" id="fullBtn" type="button">Full run <small class="mono">F</small></button>
+  </aside>
+
+  <section class="deck">
+    <div class="score">
+      <p class="k"><span id="scoreLbl">This rep</span> · pass <span id="passLbl">60</span></p>
+      <b class="num nil" id="repScore">··</b>
+      <span class="word" id="repWord"></span>
+      <div class="bar-meter" id="meter" aria-hidden="true"><i id="meterFill"></i><em id="meterPass"></em></div>
+    </div>
+    <div class="ruler" id="ruler" aria-hidden="true"></div>
+    <div class="ctrl">
+      <div class="seg" role="radiogroup" aria-label="Speed">
+        <button type="button" role="radio" data-rate="0.5">½<small>1</small></button>
+        <button type="button" role="radio" data-rate="0.75">¾<small>2</small></button>
+        <button type="button" role="radio" data-rate="1">1×<small>3</small></button>
+      </div>
+      <div class="ctrl-row">
+        <button class="btn icon" id="prevBtn" type="button" aria-label="Previous move (left arrow)">◂</button>
+        <button class="btn icon" id="retryBtn" type="button" aria-label="Count in again (R)">↻</button>
+        <button class="btn icon" id="nextBtn" type="button" aria-label="Next move (right arrow)">▸</button>
+        <button class="btn icon mir" id="mirBtn" type="button" aria-pressed="false" aria-label="Mirror the reference (M)">⇋</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 3 · SUMMARY -->
+<section class="summary" id="summary" aria-labelledby="sumH">
+  <div class="sum-head">
+    <span class="tape lay" id="sumTier" style="--tc:var(--t1)">SOLID</span>
+    <h2 id="sumH">Full run</h2>
+    <b class="num" id="sumPts">0</b>
+    <p class="mono" id="sumSub"></p>
+    <div class="sum-bars" id="sumBars" aria-label="Your full run, count by count"></div>
+  </div>
+  <ol class="sum-moves" id="sumMoves"></ol>
+  <div class="sum-act">
+    <button class="start" id="againBtn" type="button"><span>Run it again</span><small>Enter</small></button>
+    <button class="btn" id="weakBtn" type="button">Practise the weakest move</button>
+    <button class="btn" id="otherBtn" type="button">Another dance</button>
+  </div>
+</section>
+
+<!-- camera source sheet: no camera / blocked / phone as camera -->
+<section class="sheet" id="sheet" hidden aria-live="polite">
+  <div class="sheet-card">
+    <span class="tape" id="sheetTag" style="--tc:var(--t4)">Camera</span>
+    <h2 id="sheetH"></h2>
+    <p id="sheetP"></p>
+    <div class="join" id="sheetJoin" hidden>
+      <canvas id="joinQr" width="240" height="240" aria-label="QR code to open the camera page on a phone"></canvas>
+      <p>Open <b class="mono" id="joinUrl">rukh.mmix.biz/cam</b><br>and type <b class="mono code" id="joinCode">····</b></p>
+    </div>
+    <div class="sheet-act" id="sheetAct"></div>
+  </div>
+</section>
+
+<video id="camVideo" class="offscreen" playsinline muted autoplay></video>
+<script type="module" src="/js/lesson.js"></script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

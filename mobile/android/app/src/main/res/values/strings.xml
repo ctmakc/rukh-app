@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RUKH</string>
+    <string name="title_activity_main">RUKH</string>
+    <string name="package_name">biz.mmix.rukh</string>
+    <string name="custom_url_scheme">biz.mmix.rukh</string>
+</resources>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141519">
+<title>RUKH · dance battle screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Martian+Mono:wght@500;700&family=Schibsted+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/screen.css">
+</head>
+<body class="phase-lobby">
+<header class="bar">
+  <div class="brandrow">
+    <div class="wordmark brand">RUKH<i>.</i></div>
+    <nav class="modes" aria-label="Mode">
+      <span class="mode on" aria-current="page">Battle</span>
+      <a class="mode" id="lessonLink" href="/lesson">Lesson</a>
+    </nav>
+  </div>
+  <div class="now"><span id="danceTitle">Pick a dance</span><span class="lvl" id="danceLvl"></span><span class="mono" id="bpm"></span></div>
+  <div class="right">
+    <button class="sound" id="soundChip" title="M mute · − / + music level"><i class="bars" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span id="soundTxt">Sound 80%</span></button>
+    <div class="roomchip"><span class="mono host" id="hostLbl">rukh.mmix.biz/cam</span><span class="tape mono code" id="roomCode">····</span></div>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="stage" id="stageBox">
+    <canvas id="stage"></canvas>
+
+    <!-- LOBBY -->
+    <div class="lobby" id="lobby">
+      <div class="join">
+        <canvas id="joinQr" width="264" height="264" aria-label="QR code to open the camera page"></canvas>
+        <div>
+          <p class="k">1 · Phone against the wall, 2–4 m away</p>
+          <p class="big">Scan, or open <b class="mono" id="joinUrl">rukh.mmix.biz/cam</b> and type <b class="mono" id="joinCode">····</b></p>
+          <p class="k">2 · Step into frame — 1 to 4 dancers</p>
+          <p class="k">3 · Pick a dance on the right, press start</p>
+        </div>
+      </div>
+      <div class="mini"><p class="k">Tonight’s top</p><ol class="boardList" id="miniBoard"></ol></div>
+      <p class="present" id="presentTxt"><span class="dot"></span>Camera phone not linked yet</p>
+      <div class="go">
+        <button class="start" id="startBtn"><span>Start round</span><small>Enter</small></button>
+        <button class="ghost" id="checkBtn">Sound check <small>T</small></button>
+      </div>
+    </div>
+
+    <!-- COUNT-IN -->
+    <div class="count" id="count" aria-live="assertive"></div>
+
+    <!-- RESULTS -->
+    <div class="results" id="results">
+      <div class="podium" id="podium"></div>
+      <div class="clipbox" id="clipBox">
+        <canvas id="clipQr" width="240" height="240"></canvas>
+        <div>
+          <p class="k">Your clip</p>
+          <p class="big" id="clipState">Saving the clip…</p>
+          <p class="mono small" id="clipUrl"></p>
+          <button class="ghost" id="clipRetry" hidden>Try again <small>R</small></button>
+        </div>
+      </div>
+      <div class="after">
+        <button class="start again" id="againBtn"><span>Next round</span><small>Enter</small></button>
+        <a class="ghost" id="lessonAfter" href="/lesson">Learn this dance <small>L</small></a>
+      </div>
+    </div>
+
+    <!-- state banner (top of the stage) + blocking card -->
+    <div class="banner" id="banner" role="status" hidden><b id="bannerT"></b><span id="bannerS"></span></div>
+    <div class="modal" id="modal" role="alertdialog" aria-modal="false" hidden>
+      <div class="card">
+        <span class="tape" id="modalTag"></span>
+        <h2 id="modalH"></h2>
+        <p id="modalP"></p>
+        <div class="keys" id="modalKeys"></div>
+      </div>
+    </div>
+    <div class="corner mono" id="corner" title="Camera link: mode and video delay">—</div>
+  </section>
+
+  <aside class="side">
+    <!-- lobby: the dance list; play: reference video + ruler -->
+    <div class="dances" id="dances">
+      <h2>Dances <small class="mono">↑ ↓</small></h2>
+      <div class="picker" id="picker" role="listbox" aria-label="Dances"></div>
+    </div>
+    <div class="refbox" id="refBox">
+      <video id="ref" playsinline preload="auto" crossorigin="anonymous"></video>
+      <div class="reftag tape" style="--tc:var(--chalk)">Follow me</div>
+    </div>
+    <div class="ruler" id="ruler" aria-hidden="true"></div>
+    <div class="feed"><div class="nx"><p class="k">Next move</p><b id="moveNext">—</b></div><div class="tl"><p class="k">Left</p><b class="mono" id="timeLeft">0:00</b></div></div>
+    <div class="board" id="board">
+      <h2>Tonight’s top</h2>
+      <ol id="boardList"></ol>
+    </div>
+  </aside>
+</main>
+
+<footer class="lanes" id="lanes"></footer>
+<video id="remote" class="offscreen" playsinline muted autoplay></video>
+<script type="module" src="/js/screen.js"></script>
+<link rel="stylesheet" href="/mmix-kit/bugreport.css">
+<script src="/mmix-kit/bugreport.js" defer></script>
+<script type="module" src="/review-kit/launcher.js"></script>
+</body>
+</html>

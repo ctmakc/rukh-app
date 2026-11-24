@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <!-- RUKH mark: an R laid out of square-cut spike tape on the marley floor. Chalk strips, pink leg with a torn end. -->
+  <g fill="#ECE8DF">
+    <!-- stem -->
+    <polygon points="118,64 226,62 232,546 124,548" transform="rotate(-1.2 175 300)"/>
+    <!-- top strip, torn right end -->
+    <polygon points="112,62 420,58 410,84 424,108 408,134 422,160 116,166" transform="rotate(1.5 270 110)"/>
+    <!-- bowl side -->
+    <polygon points="372,96 470,104 462,318 364,312" transform="rotate(2 418 208)"/>
+    <!-- middle strip -->
+    <polygon points="118,262 450,272 446,366 114,358" transform="rotate(-1.2 280 312)"/>
+  </g>
+  <!-- leg: pink tape, torn bottom end -->
+  <polygon fill="#FF4F8B" points="236,330 346,322 512,528 494,534 506,552 484,560 492,580 394,586" />
+  <!-- floor notch: cyan, the second dancer's tape -->
+  <polygon fill="#3DD6F5" points="60,574 250,568 242,588 252,606 60,604" transform="rotate(-1.2 150 588)"/>
+</svg>

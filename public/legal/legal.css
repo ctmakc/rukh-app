@@ -1,0 +1,129 @@
+/* RUKH privacy + support pages. SPIKE TAPE tokens come from /css/app.css; this file only lays out
+   long reading pages: a 5/7 hero split with a taped photo, the 8-count ruler as the section index,
+   numbered "count" rows, and a sticky contact tape on phones once the hero has scrolled away. */
+body { min-height: 100vh; }
+.lg-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px clamp(18px, 4vw, 56px);
+  border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
+.lg-head .wordmark { font-size: 28px; text-decoration: none; }
+.lg-head nav { display: flex; gap: clamp(14px, 2.4vw, 32px); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.lg-head nav a { text-decoration: none; color: var(--dim); padding: 6px 0; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; }
+.lg-head nav a:hover { color: var(--chalk); }
+.lg-head nav a[aria-current] { color: var(--chalk); border-color: var(--tc, var(--t1)); }
+
+/* hero: words left, taped photo right */
+.lg-hero { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(24px, 4vw, 64px); align-items: center;
+  padding: clamp(28px, 5vw, 72px) clamp(18px, 4vw, 56px) clamp(24px, 4vw, 56px); }
+.lg-hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 4.4vw, 70px); line-height: 1; letter-spacing: .005em; }
+.lg-hero h1 .ln { display: block; }
+.lg-hero h1 .tape { font-family: var(--body); font-size: clamp(13px, 1.1vw, 17px); display: inline-block; margin-bottom: 20px; }
+.lg-hero .lead { margin-top: 22px; font-size: clamp(17px, 1.45vw, 22px); line-height: 1.5; color: var(--dim); max-width: 32em; }
+.lg-hero .lead b { color: var(--chalk); font-weight: 700; }
+.lg-hero .stamp { margin-top: 18px; font-family: var(--mono); font-size: 13px; color: var(--dim); letter-spacing: .02em; }
+.lg-fig { position: relative; margin: 0; }
+.lg-fig img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; outline: 6px solid var(--chalk); outline-offset: 0; }
+.lg-fig figcaption { position: absolute; left: -10px; bottom: -18px; max-width: calc(100% - 20px); }
+.lg-fig figcaption .tape { font-size: clamp(12px, 1vw, 15px); line-height: 1.35; text-transform: none; letter-spacing: .01em; font-weight: 700; padding: .45em 1.3em .4em .8em; }
+.lg-fig::before { content: ''; position: absolute; top: -14px; right: 18%; width: 92px; height: 26px; background: var(--chalk); opacity: .86;
+  transform: rotate(4deg); clip-path: polygon(3% 0, 100% 0, 97% 50%, 100% 100%, 0 100%, 3% 50%); z-index: 1; }
+
+/* quick facts: four tape strips */
+.lg-facts { display: flex; flex-wrap: wrap; gap: 12px 14px; padding: 8px clamp(18px, 4vw, 56px) 0; list-style: none; }
+.lg-facts li .tape { font-size: clamp(14px, 1.1vw, 17px); }
+
+/* the 8-count ruler as an index */
+.lg-ruler { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin: clamp(28px, 4vw, 48px) clamp(18px, 4vw, 56px) 0; list-style: none; counter-reset: c; }
+.lg-ruler a { display: grid; grid-template-rows: auto 1fr; gap: 10px; min-height: 104px; padding: 12px 12px 14px; background: var(--plate);
+  text-decoration: none; border-top: 4px solid var(--line); transition: background .18s, border-color .18s, color .18s; }
+.lg-ruler a b { font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1; color: var(--dim); transition: color .18s; }
+.lg-ruler a span { font-size: 14px; font-weight: 700; line-height: 1.25; letter-spacing: .04em; text-transform: uppercase; align-self: end; }
+.lg-ruler a:hover, .lg-ruler a.on { background: #262931; border-color: var(--tc, var(--chalk)); }
+.lg-ruler a:hover b, .lg-ruler a.on b { color: var(--chalk); }
+.lg-ruler a:active { background: var(--chalk); color: var(--ink); }
+
+/* sections: count numeral on the left, text column on the right */
+.lg-main { padding: clamp(20px, 3vw, 40px) clamp(18px, 4vw, 56px) clamp(56px, 8vw, 120px); }
+.count { display: grid; grid-template-columns: minmax(84px, 2fr) 10fr; gap: clamp(16px, 3vw, 48px); padding: clamp(28px, 4vw, 52px) 0;
+  border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+.count > .n { font-family: var(--display); font-size: clamp(56px, 7vw, 112px); line-height: .9; color: var(--tc, var(--chalk)); }
+.count h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3vw, 44px); line-height: 1.05; margin-bottom: 18px; }
+.count .body { max-width: 46em; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.62; }
+.count .body p + p, .count .body p + ul, .count .body ul + p, .count .body p + dl, .count .body dl + p, .count .body p + ol, .count .body ol + p { margin-top: 14px; }
+.count .body a { text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--tc, var(--chalk)); }
+.count .body ul, .count .body ol { padding-left: 0; list-style: none; display: grid; gap: 10px; }
+.count .body ul li { padding-left: 26px; position: relative; }
+.count .body ul li::before { content: ''; position: absolute; left: 0; top: .62em; width: 14px; height: 5px; background: var(--tc, var(--chalk)); transform: rotate(-1.2deg); }
+.count .body ol { counter-reset: s; }
+.count .body ol li { counter-increment: s; padding-left: 44px; position: relative; }
+.count .body ol li::before { content: counter(s); position: absolute; left: 0; top: -.05em; font-family: var(--mono); font-weight: 700; font-size: 15px;
+  width: 30px; height: 30px; display: grid; place-items: center; background: var(--plate); border-top: 3px solid var(--tc, var(--chalk)); }
+.count .body dl { display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; }
+.count .body dt { font-family: var(--mono); font-size: 14px; color: var(--dim); padding-top: .25em; }
+.count .body dd { margin: 0; }
+.count .body strong { font-weight: 700; color: var(--chalk); }
+.count .body .dim { color: var(--dim); }
+.count .body code { font-family: var(--mono); font-size: .86em; background: var(--plate); padding: .1em .4em; }
+.count .body .lead-in { font-size: clamp(19px, 1.6vw, 23px); line-height: 1.5; }
+
+/* troubleshooting rows on /support */
+.fix { display: grid; gap: 0; margin-top: 6px; }
+.fix details { border-top: 1px solid var(--line); }
+.fix details:last-child { border-bottom: 1px solid var(--line); }
+.fix summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; padding: 18px 0;
+  font-weight: 700; font-size: clamp(18px, 1.4vw, 21px); }
+.fix summary::-webkit-details-marker { display: none; }
+.fix summary::after { content: '+'; font-family: var(--mono); font-size: 22px; color: var(--tc, var(--chalk)); width: 34px; height: 34px; display: grid; place-items: center;
+  background: var(--plate); transition: transform .2s var(--ease-out); }
+.fix details[open] summary::after { content: '–'; }
+.fix details > div { padding: 0 0 20px; color: var(--chalk); }
+.fix details > div p { color: var(--chalk); }
+
+.btn-tape { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px 26px 12px 18px; background: var(--tc, var(--chalk)); color: var(--ink);
+  font-weight: 800; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; text-decoration: none; transform: rotate(-1.2deg);
+  clip-path: polygon(0 0, 100% 0, 97.5% 24%, 100% 48%, 97% 74%, 100% 100%, 0 100%); transition: transform .2s var(--ease-tape); }
+.btn-tape:hover { transform: rotate(-1.2deg) translateX(4px); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px 18px; margin-top: 22px; }
+.btn-ghost { display: inline-flex; align-items: center; min-height: 52px; padding: 12px 20px; border: 2px solid var(--line); text-decoration: none; font-weight: 700; font-size: 16px; letter-spacing: .04em; text-transform: uppercase; }
+.btn-ghost:hover { border-color: var(--chalk); }
+
+/* sticky contact tape: phones only, slides in after the hero */
+.lg-stick { position: fixed; left: 12px; bottom: calc(14px + env(safe-area-inset-bottom)); right: 74px; z-index: 110; display: none; }
+.lg-stick .btn-tape { width: 100%; justify-content: center; min-height: 50px; font-size: 16px; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, .45); transform: rotate(-1.2deg) translateY(140%); transition: transform .42s var(--ease-tape); }
+.lg-stick.on .btn-tape { transform: rotate(-1.2deg) translateY(0); }
+@media (max-width: 820px) { .lg-stick { display: block; } }
+
+.lg-foot { padding: 22px clamp(18px, 4vw, 56px) 90px; color: var(--dim); font-size: 14px; line-height: 1.6; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; gap: 12px 28px; flex-wrap: wrap; }
+.lg-foot a { color: var(--chalk); }
+
+/* entrance: the tape lays, the photo tape follows */
+@media (prefers-reduced-motion: no-preference) {
+  .lg-hero h1 .tape, .lg-facts .tape { animation: tapeLay .42s var(--ease-tape) both; }
+  .lg-facts li:nth-child(2) .tape { animation-delay: .08s; } .lg-facts li:nth-child(3) .tape { animation-delay: .16s; } .lg-facts li:nth-child(4) .tape { animation-delay: .24s; }
+  .lg-fig figcaption .tape { animation: tapeLay .42s var(--ease-tape) .3s both; }
+  .lg-hero h1 .ln { animation: lnUp .6s var(--ease-out) both; }
+  .lg-hero h1 .ln:nth-of-type(2) { animation-delay: .07s; } .lg-hero h1 .ln:nth-of-type(3) { animation-delay: .14s; }
+  .lg-fig img { animation: figIn .7s var(--ease-out) .1s both; }
+  .count.pre > .n { transform: scaleX(0); transform-origin: left; }
+  .count.in > .n { transform: none; transition: transform .42s var(--ease-tape); }
+}
+@keyframes lnUp { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+@keyframes figIn { from { opacity: 0; transform: rotate(1.4deg) scale(.97); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 1100px) { .lg-ruler { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 820px) {
+  .lg-hero { grid-template-columns: 1fr; }
+  .lg-hero .copy { order: 2; }
+  .lg-fig { order: 1; margin-bottom: 18px; }
+  .count { grid-template-columns: 1fr; gap: 6px; }
+  .count > .n { font-size: 64px; }
+  .lg-head nav { font-size: 13px; gap: 14px; }
+  .lg-head .wordmark { font-size: 24px; }
+}
+@media (max-width: 520px) {
+  .lg-ruler { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .lg-ruler a { min-height: 84px; padding: 9px 8px 10px; }
+  .lg-ruler a b { font-size: 24px; }
+  .lg-ruler a span { font-size: 11.5px; letter-spacing: .02em; }
+  .count .body dl { grid-template-columns: 1fr; gap: 2px; }
+  .count .body dd { margin-bottom: 10px; }
+}

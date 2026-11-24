@@ -1,0 +1,15 @@
+node_modules/
+www/
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+upload.properties
+__pycache__/
+android/app/build/
+android/build/
+android/.gradle/
+android/app/src/main/assets/public/
+ios/App/App/public/
+ios/App/Pods/
